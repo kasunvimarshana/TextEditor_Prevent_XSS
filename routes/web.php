@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
+});
+*/
+
+Route::group([], function(){
+    Route::get('home', array('uses' => 'HomeController@create'))->name('home');
+    Route::get('post_a', array('uses' => 'PostControllerA@create'))->name('post_a_create');
+    Route::post('post_a', array('uses' => 'PostControllerA@store'))->name('post_a_store');
+    
+    Route::get('post_b', array('uses' => 'PostControllerB@create'))->name('post_b_create');
+    Route::post('post_b', array('uses' => 'PostControllerB@store'))->name('post_b_store');
+});
+
+Route::get('/', function () {
+    return redirect()->route('home');
 });

@@ -26,3 +26,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+window.$ = window.jQuery = require('jquery');
+window.bootstrap = require('bootstrap');
+//window.ckeditor = window.CKEDITOR = require('ckeditor4');
+//window.tinymce = window.tinyMCE = require('tinymce');
+window.summernote = require('summernote');
