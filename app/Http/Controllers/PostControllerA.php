@@ -17,6 +17,8 @@ use DB;
 use \Exception;
 use Illuminate\Support\Facades\Route;
 
+use Mews\Purifier\Facades\Purifier as Purifier;
+
 class PostControllerA extends Controller
 {
     //
@@ -29,5 +31,41 @@ class PostControllerA extends Controller
     
     public function store(Request $request){
         //
+        $dataArray = array();
+        
+        $rules = array(
+            'content'    => 'required'
+        );
+        
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors( $validator )
+                ->withInput( $request->except(['content']) );
+        } else {
+            try {
+                DB::beginTransaction();
+                
+                $dataArray = array(
+                    'content' => Purifier::clean( $request->input('content') )
+                );
+
+                $postObject = Post::create( $dataArray );
+                unset($dataArray);
+
+                unset($dataArray);
+                
+                DB::commit();
+            }catch(Exception $e){
+                DB::rollback(); 
+                return redirect()
+                    ->back()
+                    ->withInput( $request->except(['content']) );
+            }
+        }
+        
+        return redirect()->back();
     }
 }

@@ -29,5 +29,6 @@ Route::group([], function(){
 });
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    //return redirect()->route('home');
+    return redirect()->route('post_a_create');
 });

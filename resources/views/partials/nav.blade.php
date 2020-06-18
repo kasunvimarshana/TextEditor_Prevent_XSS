@@ -6,5 +6,18 @@
         <ul class="nav navbar-nav">
             <li class=""><a href="{!! route('home') !!}">Home</a></li>
         </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="{!! route('post_a_create') !!}">
+                    <span class="glyphicon glyphicon-user"></span> Post A
+                </a>
+            </li>
+            <li>
+                <a href="{!! route('post_b_create') !!}">
+                    <span class="glyphicon glyphicon-user"></span> Post B
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>

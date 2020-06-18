@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col col-md-12">
 
-            <form id="myform" action="javascript:void(0);" method="POST" autocomplete="off">
+            <form id="myform" action="{!! route('post_a_store') !!}" method="POST" autocomplete="off">
                 @csrf
                 <div class="form-group">
                     <label for="content">Content</label>
